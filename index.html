@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Кодикс.лид — контакты компаний для отдела продаж</title>
+<meta name="description" content="Сегментированная база компаний по ОКВЭД, пиксель на вашем сайте и встроенный колл-центр. Оплата за квалифицированный контакт, от 10 ₽. Первые контакты — в течение 24 часов.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#070B14;
+  --panel:#0E1524;
+  --panel-2:#121B2E;
+  --line:#1C2637;
+  --text:#E7EDF9;
+  --muted:#8794AC;
+  --accent:#3B7BFF;
+  --accent-soft:rgba(59,123,255,.14);
+  --signal:#35D07F;
+  --radius:18px;
+  --maxw:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--ink);color:var(--text);
+  font-family:"Golos Text",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.section{padding:104px 0;position:relative}
+.eyebrow{font-size:14px;color:var(--accent);font-weight:600;margin:0 0 14px}
+h1,h2,h3{margin:0;letter-spacing:-.02em;font-weight:800;line-height:1.08}
+h2{font-size:clamp(30px,4.2vw,46px);max-width:20ch}
+h3{font-size:20px;font-weight:600;letter-spacing:-.01em;line-height:1.3}
+p{margin:0}
+.lead{color:var(--muted);font-size:18px;max-width:60ch;margin-top:18px}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);
+  background:rgba(7,11,20,.78);border-bottom:1px solid transparent;transition:border-color .3s}
+header.stuck{border-bottom-color:var(--line)}
+.bar{display:flex;align-items:center;gap:34px;height:72px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.02em}
+.logo-mark{width:26px;height:26px;border-radius:8px;background:linear-gradient(150deg,var(--accent),#6FA0FF);
+  position:relative;flex:none}
+.logo-mark::after{content:"";position:absolute;inset:8px 8px auto auto;width:7px;height:7px;border-radius:50%;background:#fff}
+nav{display:flex;gap:26px;margin-left:auto;font-size:15px;color:var(--muted)}
+nav a{transition:color .2s}
+nav a:hover{color:var(--text)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  padding:13px 22px;border-radius:12px;font-weight:600;font-size:15px;border:1px solid transparent;
+  transition:transform .18s cubic-bezier(.2,.9,.3,1.3),background .2s,border-color .2s}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 30px -10px rgba(59,123,255,.9)}
+.btn-primary:hover{transform:translateY(-2px);background:#4A87FF}
+.btn-ghost{border-color:var(--line);background:rgba(255,255,255,.02)}
+.btn-ghost:hover{border-color:#2C3A52;transform:translateY(-2px)}
+.bar .btn{padding:10px 18px}
+
+/* ---------- hero ---------- */
+.hero{padding:76px 0 84px;position:relative;overflow:hidden}
+.glow{position:absolute;pointer-events:none;border-radius:50%;filter:blur(90px);opacity:.5}
+.glow-a{width:620px;height:620px;background:rgba(59,123,255,.22);top:-280px;left:-160px}
+.glow-b{width:460px;height:460px;background:rgba(59,123,255,.12);top:120px;right:-200px}
+.hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:56px;align-items:center;position:relative}
+h1{font-size:clamp(38px,5.4vw,62px);max-width:14ch}
+.hero p.lead{max-width:44ch}
+.hero-badge{display:inline-flex;align-items:center;gap:9px;padding:7px 14px 7px 8px;border-radius:100px;
+  border:1px solid var(--line);background:var(--panel);font-size:14px;color:var(--muted);margin-bottom:26px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--signal);flex:none;
+  box-shadow:0 0 0 0 rgba(53,208,127,.6);animation:pulse 2.4s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(53,208,127,0)}100%{box-shadow:0 0 0 0 rgba(53,208,127,0)}}
+
+/* hero form */
+.hero-form{margin-top:34px;display:flex;gap:10px;flex-wrap:wrap;max-width:470px}
+.field{flex:1 1 220px;position:relative}
+.field input{width:100%;padding:16px 18px;border-radius:13px;background:var(--panel);
+  border:1px solid var(--line);color:var(--text);font-size:16px;transition:border-color .2s,background .2s}
+.field input::placeholder{color:#5D6980}
+.field input:focus{outline:none;border-color:var(--accent);background:var(--panel-2)}
+.hero-form .btn{flex:0 0 auto;padding:16px 26px}
+.form-note{font-size:13.5px;color:#6C7890;margin-top:14px;max-width:42ch}
+.form-note a{color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.form-ok{display:none;margin-top:20px;padding:16px 18px;border-radius:13px;
+  border:1px solid rgba(53,208,127,.35);background:rgba(53,208,127,.08);font-size:15.5px;max-width:470px}
+.form-ok.show{display:block}
+
+/* niche picker panel */
+.picker{background:linear-gradient(170deg,var(--panel-2),var(--panel));border:1px solid var(--line);
+  border-radius:24px;padding:28px;position:relative;overflow:hidden}
+.picker::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(600px 220px at 80% -10%,rgba(59,123,255,.18),transparent 70%);pointer-events:none}
+.picker-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:18px}
+.picker-head span{font-size:14px;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:9px 14px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.02);
+  font-size:14.5px;color:var(--muted);transition:all .2s}
+.chip:hover{border-color:#2C3A52;color:var(--text)}
+.chip[aria-pressed="true"]{background:var(--accent-soft);border-color:rgba(59,123,255,.55);color:#BFD4FF}
+.counter{margin:26px 0 4px;display:flex;align-items:flex-end;gap:12px}
+.counter b{font-size:clamp(38px,5vw,54px);font-weight:800;letter-spacing:-.03em;line-height:1;
+  font-variant-numeric:tabular-nums}
+.counter i{font-style:normal;font-size:15px;color:var(--muted);padding-bottom:7px}
+.picker-sub{font-size:14.5px;color:var(--muted);border-top:1px solid var(--line);margin-top:22px;padding-top:18px}
+.picker-rows{display:grid;gap:9px;margin-top:16px}
+.prow{display:flex;align-items:center;gap:11px;font-size:14.5px;color:var(--muted)}
+.prow em{font-style:normal;color:var(--text);font-weight:500}
+.tick{width:17px;height:17px;border-radius:50%;background:var(--accent-soft);flex:none;position:relative}
+.tick::after{content:"";position:absolute;left:5.5px;top:4px;width:4px;height:8px;
+  border:solid var(--accent);border-width:0 2px 2px 0;transform:rotate(42deg)}
+
+/* ---------- stats strip ---------- */
+.strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(14,21,36,.5)}
+.strip-in{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;padding:40px 0}
+.stat b{display:block;font-size:32px;font-weight:800;letter-spacing:-.025em;font-variant-numeric:tabular-nums}
+.stat span{font-size:14.5px;color:var(--muted);display:block;margin-top:6px;max-width:22ch}
+
+/* ---------- sources ---------- */
+.sources{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:52px}
+.src{border:1px solid var(--line);border-radius:var(--radius);padding:26px;background:var(--panel);
+  position:relative;transition:border-color .25s,transform .25s}
+.src:hover{border-color:#2A3A55;transform:translateY(-3px)}
+.src-ico{width:40px;height:40px;border-radius:11px;background:var(--accent-soft);display:grid;place-items:center;margin-bottom:18px}
+.src h3{margin-bottom:9px}
+.src p{color:var(--muted);font-size:15.5px}
+.tag{position:absolute;top:22px;right:22px;font-size:12.5px;padding:4px 10px;border-radius:7px;
+  background:var(--accent-soft);color:#9CC0FF;font-weight:500}
+
+/* ---------- steps ---------- */
+.steps{display:grid;gap:0;margin-top:46px;border-top:1px solid var(--line)}
+.step{display:grid;grid-template-columns:56px 1fr;gap:20px;padding:26px 4px;border-bottom:1px solid var(--line);
+  align-items:start}
+.step-n{font-size:15px;font-weight:600;color:var(--accent);padding-top:2px;font-variant-numeric:tabular-nums}
+.step h3{margin-bottom:7px}
+.step p{color:var(--muted);font-size:15.5px;max-width:62ch}
+
+/* ---------- call center ---------- */
+.cc{background:linear-gradient(160deg,#101A2E,#0B1220);border:1px solid var(--line);border-radius:26px;
+  padding:44px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;overflow:hidden;position:relative}
+.cc h2{font-size:clamp(27px,3.3vw,38px);max-width:15ch}
+.cc p{color:var(--muted);margin-top:18px;font-size:16px;max-width:46ch}
+.cc-price{display:inline-flex;align-items:center;gap:10px;margin-top:26px;padding:13px 20px;border-radius:12px;
+  border:1px solid var(--line);background:rgba(255,255,255,.02);font-size:15px}
+.cc-price b{font-weight:600}
+.orbit{position:relative;aspect-ratio:1;max-width:400px;margin:0 auto;width:100%}
+.ring{position:absolute;border:1px dashed rgba(135,148,172,.22);border-radius:50%;inset:0}
+.ring.r2{inset:14%}
+.ring.r3{inset:28%}
+.spin{position:absolute;inset:0;animation:rot 46s linear infinite}
+.spin.rev{animation-direction:reverse;animation-duration:62s}
+@keyframes rot{to{transform:rotate(360deg)}}
+.pill{position:absolute;display:flex;align-items:center;gap:7px;padding:7px 12px;border-radius:9px;
+  background:#16213A;border:1px solid var(--line);font-size:13.5px;white-space:nowrap;
+  transform:translate(-50%,-50%);font-variant-numeric:tabular-nums;transition:opacity .4s}
+.pill i{width:6px;height:6px;border-radius:50%;background:#E05A5A;flex:none;transition:background .4s}
+.pill.on i{background:var(--signal)}
+.pill span.st{display:none;color:var(--signal);font-size:12.5px}
+.cc.live .pill span.st{display:inline}
+.hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:112px;height:112px;border-radius:50%;
+  background:#0E1728;border:1px solid var(--line);display:grid;place-items:center;text-align:center;gap:4px;
+  transition:border-color .4s,box-shadow .4s}
+.cc.live .hub{border-color:rgba(53,208,127,.5);box-shadow:0 0 44px -6px rgba(53,208,127,.35)}
+.hub b{font-size:12.5px;font-weight:600;color:#E05A5A;transition:color .4s}
+.cc.live .hub b{color:var(--signal)}
+.hub svg{margin:0 auto 2px}
+.toggle{display:inline-flex;align-items:center;gap:12px;margin-top:22px;font-size:15px;color:var(--muted)}
+.switch{width:52px;height:30px;border-radius:100px;background:#1A2438;border:1px solid var(--line);
+  position:relative;padding:0;transition:background .3s}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;
+  background:#63708A;transition:transform .3s cubic-bezier(.2,.9,.3,1.4),background .3s}
+.switch[aria-checked="true"]{background:rgba(53,208,127,.22);border-color:rgba(53,208,127,.45)}
+.switch[aria-checked="true"]::after{transform:translateX(22px);background:var(--signal)}
+
+/* ---------- calls ---------- */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:34px 0 26px}
+.tab{padding:10px 16px;border-radius:10px;border:1px solid var(--line);background:transparent;
+  font-size:15px;color:var(--muted);transition:all .2s}
+.tab:hover{color:var(--text);border-color:#2C3A52}
+.tab[aria-selected="true"]{background:var(--text);color:var(--ink);border-color:var(--text);font-weight:600}
+.calls{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.call{border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;background:var(--panel)}
+.call-top{display:flex;align-items:center;gap:14px}
+.play{width:44px;height:44px;border-radius:50%;background:var(--accent);border:none;display:grid;place-items:center;
+  flex:none;transition:transform .18s}
+.play:hover{transform:scale(1.06)}
+.play svg{fill:#fff}
+.call-meta{min-width:0}
+.call-meta b{display:block;font-size:15.5px;font-weight:600}
+.call-meta span{font-size:13.5px;color:var(--muted)}
+.wave{display:flex;align-items:center;gap:2.5px;height:34px;margin-top:16px;cursor:pointer}
+.wave i{flex:1;background:#27334A;border-radius:2px;transition:background .15s,height .2s;min-height:4px}
+.wave i.pass{background:var(--accent)}
+.call-foot{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:13px;color:var(--muted)}
+.badge{font-size:12.5px;padding:4px 9px;border-radius:7px;background:rgba(53,208,127,.12);color:var(--signal)}
+.badge.warn{background:rgba(224,90,90,.12);color:#E88A8A}
+.hint{font-size:14px;color:#6C7890;margin-top:22px}
+
+/* ---------- advantages ---------- */
+.adv{display:grid;grid-template-columns:repeat(2,1fr);gap:0;margin-top:48px;
+  border:1px solid var(--line);border-radius:24px;overflow:hidden}
+.adv > div{padding:30px 32px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.adv > div:nth-child(2n){border-right:none}
+.adv > div:nth-last-child(-n+2){border-bottom:none}
+.adv h3{margin-bottom:9px}
+.adv p{color:var(--muted);font-size:15.5px;max-width:44ch}
+.adv .k{font-size:13px;color:var(--accent);font-weight:600;margin-bottom:12px}
+
+/* ---------- pricing ---------- */
+.calc{border:1px solid var(--line);border-radius:24px;padding:36px;background:var(--panel);margin-top:44px}
+.calc-top{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;align-items:flex-end}
+.calc-out b{font-size:clamp(36px,5vw,52px);font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
+.calc-out span{font-size:15px;color:var(--muted)}
+.total{text-align:right}
+.total b{font-size:30px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:5px;border-radius:100px;
+  background:linear-gradient(90deg,var(--accent) var(--pct,0%),#1E293D var(--pct,0%));margin:34px 0 12px;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;
+  background:#fff;border:5px solid var(--accent);cursor:grab;box-shadow:0 4px 16px rgba(0,0,0,.5)}
+input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:#fff;
+  border:5px solid var(--accent);cursor:grab}
+.scale{display:flex;justify-content:space-between;font-size:12.5px;color:#5D6980}
+.tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:32px}
+.tier{border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center;transition:all .25s}
+.tier small{display:block;font-size:12.5px;color:var(--muted);margin-bottom:8px;font-variant-numeric:tabular-nums}
+.tier b{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
+.tier.active{background:var(--accent);border-color:var(--accent)}
+.tier.active small{color:rgba(255,255,255,.75)}
+
+/* ---------- faq ---------- */
+.faq{margin-top:42px;border-top:1px solid var(--line)}
+.q{border-bottom:1px solid var(--line)}
+.q button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;
+  padding:24px 4px;background:none;border:none;text-align:left;font-size:17.5px;font-weight:500}
+.q .plus{width:22px;height:22px;flex:none;position:relative;transition:transform .3s}
+.q .plus::before,.q .plus::after{content:"";position:absolute;background:var(--muted);border-radius:2px}
+.q .plus::before{left:0;top:10px;width:22px;height:2px}
+.q .plus::after{left:10px;top:0;width:2px;height:22px;transition:opacity .3s}
+.q[open] .plus{transform:rotate(90deg)}
+.q[open] .plus::after{opacity:0}
+.q .a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.q .a p{color:var(--muted);font-size:16px;padding:0 4px 26px;max-width:78ch}
+
+/* ---------- cta ---------- */
+.cta-box{border:1px solid var(--line);border-radius:26px;padding:52px;
+  background:linear-gradient(150deg,#13203A,#0B1220)}
+.cta-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center}
+.person{display:flex;align-items:center;gap:16px;margin-top:28px;padding-top:26px;border-top:1px solid var(--line)}
+.avatar{width:52px;height:52px;border-radius:50%;background:linear-gradient(140deg,#3B7BFF,#1E3E8A);
+  display:grid;place-items:center;font-weight:700;font-size:17px;flex:none}
+.person b{display:block;font-size:16px;font-weight:600}
+.person a{color:var(--accent);font-size:15.5px;font-variant-numeric:tabular-nums}
+
+footer{border-top:1px solid var(--line);padding:40px 0;color:#5D6980;font-size:14px}
+.foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
+.foot a{color:#8794AC}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1)}
+.rv.in{opacity:1;transform:none}
+.hero .rv{transition-delay:var(--d,0ms)}
+
+@media (max-width:960px){
+  .hero-grid,.cc,.cta-grid{grid-template-columns:1fr}
+  .strip-in{grid-template-columns:repeat(2,1fr);gap:26px}
+  .sources,.calls,.adv{grid-template-columns:1fr}
+  .adv > div{border-right:none}
+  .adv > div:nth-last-child(2){border-bottom:1px solid var(--line)}
+  .tiers{grid-template-columns:repeat(2,1fr)}
+  nav{display:none}
+  .section{padding:76px 0}
+  .cc,.calc,.cta-box{padding:28px}
+}
+@media (max-width:560px){
+  body{font-size:16px}
+  .bar{gap:14px}
+  .bar .btn{padding:9px 14px;font-size:14px}
+  .hero-form .btn{width:100%}
+  .total{text-align:left}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transform:none}
+}
+
+/* ================= VISUAL UPGRADE ================= */
+::selection{background:rgba(59,123,255,.35);color:#fff}
+::-webkit-scrollbar{width:11px}
+::-webkit-scrollbar-track{background:var(--ink)}
+::-webkit-scrollbar-thumb{background:#1E2A42;border-radius:100px;border:3px solid var(--ink)}
+::-webkit-scrollbar-thumb:hover{background:#2A3A5C}
+
+/* сетка-фон + виньетка */
+body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background-image:linear-gradient(rgba(59,123,255,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(59,123,255,.045) 1px,transparent 1px);
+  background-size:56px 56px;
+  mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 30%,transparent 78%)}
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(ellipse 70% 55% at 50% -5%,rgba(59,123,255,.10),transparent 60%)}
+
+.grad{background:linear-gradient(100deg,#6FA0FF 0%,#3B7BFF 40%,#8FB9FF 70%,#6FA0FF 100%);
+  background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:shine 6s linear infinite}
+@keyframes shine{to{background-position:200% center}}
+
+/* бейджи */
+.hero-badge{background:rgba(14,21,36,.75);backdrop-filter:blur(8px)}
+
+/* кнопки — блик */
+.btn{position:relative;overflow:hidden}
+.btn-primary::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);
+  transform:skewX(-20deg);transition:left .5s ease}
+.btn-primary:hover::after{left:130%}
+
+/* поля — свечение при фокусе */
+.field input:focus{box-shadow:0 0 0 4px rgba(59,123,255,.12)}
+
+/* панель сегментатора — стекло */
+.picker{background:linear-gradient(170deg,rgba(18,27,46,.9),rgba(14,21,36,.85));backdrop-filter:blur(10px);
+  box-shadow:0 30px 80px -30px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.05)}
+.chip:hover{transform:translateY(-1px)}
+.chip{transition:all .2s}
+.chip[aria-pressed="true"]{box-shadow:0 4px 18px -6px rgba(59,123,255,.6)}
+
+/* карточки источников — градиентная рамка при наведении */
+.src{background:linear-gradient(var(--panel),var(--panel)) padding-box,
+  linear-gradient(160deg,var(--line),var(--line)) border-box;border:1px solid transparent;
+  box-shadow:0 14px 40px -22px rgba(0,0,0,.6)}
+.src:hover{transform:translateY(-5px);box-shadow:0 26px 60px -24px rgba(59,123,255,.28);
+  background:linear-gradient(var(--panel-2),var(--panel)) padding-box,
+  linear-gradient(160deg,rgba(59,123,255,.6),rgba(59,123,255,.08) 55%,rgba(53,208,127,.3)) border-box}
+.src-ico{background:linear-gradient(140deg,rgba(59,123,255,.22),rgba(59,123,255,.06));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
+
+/* шаги — нумерация */
+.step-n{width:44px;height:44px;border-radius:13px;background:var(--accent-soft);
+  display:grid;place-items:center;font-size:16px;font-weight:700;color:var(--accent);
+  border:1px solid rgba(59,123,255,.25)}
+.step:hover .step-n{background:rgba(59,123,255,.28)}
+
+/* бегущая строка */
+.ticker-wrap{border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:rgba(14,21,36,.5);overflow:hidden;padding:15px 0;
+  mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.ticker{display:flex;width:max-content;animation:tick 38s linear infinite;
+  font-size:14.5px;color:#5D6980;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.ticker span{white-space:nowrap}
+.ticker-wrap:hover .ticker{animation-play-state:paused}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* орбита — мягкое свечение */
+.cc{box-shadow:0 40px 100px -40px rgba(0,0,0,.8)}
+.hub{box-shadow:0 0 60px -10px rgba(59,123,255,.25)}
+.cc.live .hub{box-shadow:0 0 60px -6px rgba(53,208,127,.4)}
+.pill{box-shadow:0 6px 20px -8px rgba(0,0,0,.7)}
+
+/* звонки */
+.call{transition:transform .25s,border-color .25s,box-shadow .25s}
+.call:hover{transform:translateY(-3px);border-color:#2A3A55;box-shadow:0 20px 50px -24px rgba(0,0,0,.7)}
+.play{box-shadow:0 8px 22px -8px rgba(59,123,255,.8)}
+.wave i:hover{background:#3A4A68}
+
+/* преимущества */
+.adv > div{transition:background .25s}
+.adv > div:hover{background:rgba(59,123,255,.04)}
+
+/* тарифы */
+.tier{transition:all .25s}
+.tier:hover{transform:translateY(-3px);border-color:#2A3A55}
+.tier.active{box-shadow:0 14px 36px -12px rgba(59,123,255,.7);
+  background:linear-gradient(150deg,#4A87FF,#2F6BEF)}
+
+/* FAQ */
+.q button{transition:color .2s}
+.q button:hover{color:#BFD4FF}
+.q .plus::before,.q .plus::after{background:var(--accent)}
+
+/* CTA */
+.cta-box{position:relative;overflow:hidden}
+.cta-box::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;
+  background:rgba(59,123,255,.16);filter:blur(110px);top:-260px;right:-140px;pointer-events:none}
+.cta-box::after{content:"";position:absolute;width:380px;height:380px;border-radius:50%;
+  background:rgba(53,208,127,.08);filter:blur(100px);bottom:-200px;left:-100px;pointer-events:none}
+.cta-grid{position:relative;z-index:1}
+
+/* подвал */
+footer{background:rgba(10,15,26,.6)}
+.foot a:hover{color:var(--text)}
+.foot a{transition:color .2s}
+
+/* eyebrow — с линией */
+.eyebrow{display:inline-flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:22px;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,var(--accent),transparent)}
+
+/* секции — плавнее */
+.section{padding:96px 0}
+h2{max-width:24ch}
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="wrap bar">
+    <a href="#top" class="logo"><span class="logo-mark"></span>Кодикс.лид</a>
+    <nav>
+      <a href="#how">Как работает</a>
+      <a href="#sources">Источники</a>
+      <a href="#callcenter">Колл-центр</a>
+      <a href="#calls">Звонки</a>
+      <a href="#pricing">Цены</a>
+      <a href="#faq">Вопросы</a>
+    </nav>
+    <a href="#start" class="btn btn-primary">Оставить заявку</a>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="glow glow-a"></div><div class="glow glow-b"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="rv" style="--d:0ms"><span class="hero-badge"><span class="dot"></span>Первые контакты — в течение 24 часов</span>
+      <span class="hero-badge" style="margin-left:8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#35D07F" stroke-width="2" stroke-linecap="round"><path d="M20 12v8H4v-8M2 7h20v5H2zM12 22V7M12 7c-1.5 0-3-1.2-3-2.5S10.5 2 12 2s3 1.2 3 2.5S13.5 7 12 7z"/></svg>+100 идентификаций в подарок при первом пополнении</span></div>
+      <h1 class="rv" style="--d:80ms">Компании, которым <span class="grad">нужно то, что вы продаёте</span></h1>
+      <p class="lead rv" style="--d:160ms">Выбираете нишу по ОКВЭД и регион — получаете сегментированную базу компаний с телефонами. Хотите, прозвоним сами и передадим только тех, кто заинтересован. Работаем легально: по каждому контакту показываем источник данных.</p>
+
+      <form class="hero-form rv" style="--d:240ms" id="leadForm" novalidate>
+        <div class="field">
+          <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" inputmode="tel" autocomplete="tel" aria-label="Ваш телефон" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Получить расчёт</button>
+      </form>
+      <p class="form-note rv" style="--d:300ms">Перезвоним в течение рабочего дня, посчитаем стоимость под ваш объём. Нажимая кнопку, вы соглашаетесь с <a href="#">политикой обработки данных</a>.</p>
+      <div class="form-ok" id="formOk">Заявка принята. Дмитрий перезвонит по номеру <b id="okPhone"></b> и соберёт сегмент под вашу нишу.</div>
+    </div>
+
+    <div class="picker rv" style="--d:360ms">
+      <div class="picker-head">
+        <h3>Подберите нишу</h3><span>Москва и область</span>
+      </div>
+      <div class="chips" id="chips" role="group" aria-label="Ниша по ОКВЭД"></div>
+      <div class="counter">
+        <b id="cnt">0</b><i>компаний в сегменте</i>
+      </div>
+      <div class="picker-rows" id="prows"></div>
+      <p class="picker-sub">Сегмент собирается из открытых реестров и обновляется ежедневно. Точные цифры по вашему региону назовём при расчёте, а несоответствующие сегменту контакты заменим бесплатно.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TICKER ================= -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker">
+    <span>+7 (912) 123-45-67 · rus-portal.ru&nbsp;&nbsp;◆&nbsp;&nbsp;+7 (925) 987-65-43 · mos-info.ru&nbsp;&nbsp;◆&nbsp;&nbsp;+7 (903) 222-11-00 · biz-market.ru&nbsp;&nbsp;◆&nbsp;&nbsp;+7 (964) 555-77-88 · ural-service.ru&nbsp;&nbsp;◆&nbsp;&nbsp;+7 (978) 444-33-22 · south-region.ru&nbsp;&nbsp;◆&nbsp;&nbsp;+7 (916) 665-54-44 · baltic-group.ru&nbsp;&nbsp;◆&nbsp;&nbsp;+7 (921) 888-99-00 · tech-russia.ru&nbsp;&nbsp;◆&nbsp;&nbsp;</span>
+    <span>+7 (912) 123-45-67 · rus-portal.ru&nbsp;&nbsp;◆&nbsp;&nbsp;+7 (925) 987-65-43 · mos-info.ru&nbsp;&nbsp;◆&nbsp;&nbsp;+7 (903) 222-11-00 · biz-market.ru&nbsp;&nbsp;◆&nbsp;&nbsp;+7 (964) 555-77-88 · ural-service.ru&nbsp;&nbsp;◆&nbsp;&nbsp;+7 (978) 444-33-22 · south-region.ru&nbsp;&nbsp;◆&nbsp;&nbsp;+7 (916) 665-54-44 · baltic-group.ru&nbsp;&nbsp;◆&nbsp;&nbsp;+7 (921) 888-99-00 · tech-russia.ru&nbsp;&nbsp;◆&nbsp;&nbsp;</span>
+  </div>
+</div>
+
+<!-- ================= STRIP ================= -->
+<div class="strip">
+  <div class="wrap strip-in">
+    <div class="stat rv"><b data-count="24" data-suffix=" часа">0</b><span>до первой выгрузки контактов</span></div>
+    <div class="stat rv"><b data-count="200" data-suffix="+">0</b><span>компаний уже работают с нами</span></div>
+    <div class="stat rv"><b data-count="4" data-suffix=" попытки">0</b><span>дозвона по каждому контакту</span></div>
+    <div class="stat rv"><b data-count="10" data-prefix="от " data-suffix=" ₽">0</b><span>за контакт на больших объёмах</span></div>
+  </div>
+</div>
+
+<!-- ================= HOW ================= -->
+<section class="section" id="how" style="padding-bottom:0">
+  <div class="wrap">
+    <p class="eyebrow rv">Как это работает</p>
+    <h2 class="rv">Система собирает вчерашние действия вашей аудитории</h2>
+    <div class="steps" style="margin-top:40px">
+      <div class="step rv"><div class="step-n">01</div><div><h3>Настраиваете источники, лимиты и регионы</h3><p>Сайты конкурентов, телефоны, ниши по ОКВЭД, SMS-нейминги или свой пиксель. Подключение занимает один день, маркетолог не нужен.</p></div></div>
+      <div class="step rv"><div class="step-n">02</div><div><h3>Система идентифицирует вчерашний спрос</h3><p>Это не прогноз и не гипотеза — фактический спрос, уже сформированный на рынке. Работает 24/7, без вашего участия.</p></div></div>
+      <div class="step rv"><div class="step-n">03</div><div><h3>Утром получаете номера тех, кто вчера искал услугу</h3><p>Контакты поступают ежедневно порциями — в CRM, таблицу или на прозвон колл-центра. Аудитория уже прогрета: визиты, звонки, изучение услуг.</p></div></div>
+    </div>
+    <div class="strip-in" style="grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);margin-top:52px">
+      <div class="stat rv"><b>до 70%</b><span>посетителей сайта идентифицируем по пикселю</span></div>
+      <div class="stat rv"><b>до 80%</b><span>контактов доступно к дозвону</span></div>
+      <div class="stat rv"><b>25%</b><span>квалификации — в 3–5 раз выше, чем у рекламы</span></div>
+      <div class="stat rv"><b>−15–35%</b><span>стоимости лида уже в первую неделю</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SOURCES ================= -->
+<section class="section" id="sources">
+  <div class="wrap">
+    <p class="eyebrow rv">Откуда берём контакты</p>
+    <h2 class="rv">Шесть источников, и по каждому видно, откуда взялся контакт</h2>
+    <div class="sources">
+      <article class="src rv">
+        <div class="src-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B7BFF" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg></div>
+        <h3>Ваш сайт</h3>
+        <p>Ставите пиксель Кодикс.лид. Видно, какие компании заходили, какие страницы смотрели и сколько раз возвращались — даже если заявку не оставили.</p>
+      </article>
+      <article class="src rv">
+        <div class="src-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B7BFF" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 010 18 15 15 0 010-18"/></svg></div>
+        <h3>Сайты конкурентов</h3>
+        <p>Указываете сайты конкурентов — видно, кто из их посетителей заходил и что смотрел. Ловим компании, которые уже сравнивают предложения на рынке.</p>
+      </article>
+      <article class="src rv">
+        <div class="src-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B7BFF" stroke-width="2" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.5c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg></div>
+        <h3>Звонки конкурентам</h3>
+        <p>Контакты тех, кто звонил конкурентам или получал от них звонок, — самый горячий интерес. Такие компании выбирают поставщика прямо сейчас.</p>
+      </article>
+      <article class="src rv">
+        <div class="src-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B7BFF" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 14h8"/></svg></div>
+        <h3>Ниши по ОКВЭД</h3>
+        <p>Выбираете виды деятельности, регион, выручку и год регистрации. База компаний заранее сегментирована — выгрузка приходит готовой к прозвону.</p>
+      </article>
+      <article class="src rv">
+        <div class="src-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B7BFF" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
+        <h3>Айди-имена (SMS)</h3>
+        <p>Указываете имя SMS-отправителя — находим номера людей, которым приходили такие сообщения. Сегмент тех, кто уже общается с игроками ниши.</p>
+      </article>
+      <article class="src rv">
+        <div class="src-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B7BFF" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
+        <h3>Объявления Авито</h3>
+        <p>Новый источник контактов по объявлениям Авито — компании, которые активно ищут вашу категорию товаров и услуг.</p>
+        <span class="tag">Скоро</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STEPS ================= -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow rv">Что нужно от вас</p>
+    <h2 class="rv">Три шага, дальше работаем мы</h2>
+    <div class="steps">
+      <div class="step rv"><div class="step-n">Шаг 1</div><div><h3>Опишите, кто ваш клиент</h3><p>Ниша, регион, размер компании. Если не знаете точных ОКВЭД — подберём сами по описанию вашего продукта.</p></div></div>
+      <div class="step rv"><div class="step-n">Шаг 2</div><div><h3>Скажите, куда присылать контакты</h3><p>CRM, Google-таблица, чат в мессенджере или личный кабинет. Настроим выгрузку под ваш процесс.</p></div></div>
+      <div class="step rv"><div class="step-n">Шаг 3</div><div><h3>Дальше ничего</h3><p>Контакты приходят ежедневно порциями. Если подключён колл-центр — приходят уже прозвонённые, со статусом и записью разговора.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BONUSES ================= -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="sources" style="grid-template-columns:repeat(2,1fr);margin-top:0">
+      <article class="src rv">
+        <div class="src-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B7BFF" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M21 21v-2a4 4 0 00-3-3.87"/></svg></div>
+        <h3>Нет отдела продаж?</h3>
+        <p>Не проблема. Сами прозвоним номера, выявим потребность и передадим готовых клиентов — вам останется только закрывать сделки.</p>
+      </article>
+      <article class="src rv">
+        <div class="src-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B7BFF" stroke-width="2" stroke-linecap="round"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.5 6.8L12 16.9 5.9 20.3l1.5-6.8L2.2 8.9l6.9-.6z"/></svg></div>
+        <h3>Бонус бесплатно</h3>
+        <p>Поможем со скриптами и разберём звонки менеджеров на точки роста. Никакой дополнительной оплаты — входит в работу с нами.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CALL CENTER ================= -->
+<section class="section" id="callcenter" style="padding-top:0">
+  <div class="wrap">
+    <div class="cc rv" id="cc">
+      <div>
+        <p class="eyebrow">Подключается по желанию</p>
+        <h2>Колл-центр отдаёт только квалифицированные контакты</h2>
+        <p>Оператор делает до 4 попыток дозвона, ведёт разговор по вашему скрипту, выявляет потребность, ставит статус и оставляет комментарий. Все разговоры записываются — вы слушаете любой. Квалифицированные контакты сразу уходят в вашу CRM со статусом и комментарием.</p>
+        <div class="toggle">
+          <button class="switch" id="ccSwitch" role="switch" aria-checked="false" aria-label="Включить колл-центр"></button>
+          <span id="ccLabel">Включить колл-центр</span>
+        </div>
+        <div class="cc-price">Стоимость обработки — <b>от 70 ₽ за контакт</b></div>
+      </div>
+      <div class="orbit" id="orbit">
+        <div class="ring"></div><div class="ring r2"></div><div class="ring r3"></div>
+        <div class="spin" id="spinA"></div>
+        <div class="spin rev" id="spinB"></div>
+        <div class="hub">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="color:#8794AC"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.5c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg>
+          <b id="hubState">Выключен</b>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CALLS ================= -->
+<section class="section" id="calls" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow rv">Записи разговоров</p>
+    <h2 class="rv">Звонки из разных ниш — послушайте, как это звучит</h2>
+    <p class="lead rv">Реальные разговоры операторов с контактами из базы. Номера и названия компаний обезличены.</p>
+    <div class="tabs" id="callTabs" role="tablist"></div>
+    <div class="calls" id="callList"></div>
+    <p class="hint">Положите файлы <code>call-1.mp3</code> … <code>call-7.mp3</code> рядом с этой страницей — плеер подхватит их автоматически.</p>
+  </div>
+</section>
+
+<!-- ================= ADVANTAGES ================= -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow rv">Почему Кодикс.лид</p>
+    <h2 class="rv">Чем мы отличаемся от продавцов баз</h2>
+    <div class="adv">
+      <div class="rv"><div class="k">Оплата</div><h3>Платите за квалифицированный контакт</h3><p>Не за строчку в выгрузке. Если оператор не дозвонился или контакт не соответствует вашему сегменту — он не тарифицируется.</p></div>
+      <div class="rv"><div class="k">Прозрачность</div><h3>Слушаете все записи, а не отчёт</h3><p>Каждый переданный контакт — с записью разговора, статусом и комментарием оператора. Проверить качество можно в тот же день.</p></div>
+      <div class="rv"><div class="k">Скрипты</div><h3>Помогаем со скриптом и разбираем звонки</h3><p>Соберём скрипт под ваш продукт, а раз в неделю разберём звонки ваших менеджеров и покажем, где теряются сделки. Бесплатно.</p></div>
+      <div class="rv"><div class="k">Условия</div><h3>Без абонплаты и минимального пакета</h3><p>Нет подписки и обязательного объёма. Начинаете со 100 контактов, увеличиваете, когда воронка покажет результат.</p></div>
+      <div class="rv"><div class="k">Контроль</div><h3>Свой менеджер и стоп-лист</h3><p>Один человек ведёт ваш проект. Действующих клиентов и нежелательные компании вносим в стоп-лист — их в выгрузке не будет.</p></div>
+      <div class="rv"><div class="k">Интеграции</div><h3>Контакты приходят туда, где работает отдел</h3><p>Битрикс24, amoCRM, webhook, Make, Albato, Google-таблица или чат в мессенджере. Все интеграции бесплатны, настройка входит в стоимость.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LEGAL ================= -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="cc rv" style="grid-template-columns:1fr">
+      <div>
+        <p class="eyebrow">Правовая чистота</p>
+        <h2 style="max-width:22ch">Идентификация законна и не относится к персональным данным</h2>
+        <div class="adv" style="margin-top:30px">
+          <div class="rv"><div class="k">152-ФЗ</div><h3>Только номер без привязки к личности</h3><p>Мы передаём номер телефона организации без ФИО и данных, позволяющих установить личность — это не является персональными данными по 152-ФЗ.</p></div>
+          <div class="rv"><div class="k">Согласие</div><h3>Работаем с аудиторией, давшей согласие</h3><p>Идентификация ведётся только в отношении аудитории, давшей согласие оператору связи на обработку данных для информационных рассылок.</p></div>
+          <div class="rv"><div class="k">Реестр РКН</div><h3>Зарегистрированы в Роскомнадзоре</h3><p>Кодикс.лид зарегистрирован как оператор персональных данных в реестре Роскомнадзора, серверы расположены на территории РФ.</p></div>
+          <div class="rv"><div class="k">Методы</div><h3>Без запрещённых методов</h3><p>Не используем кликджекинг, парсинг закрытых данных и любые другие методы, нарушающие законодательство РФ.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRICING ================= -->
+<section class="section" id="pricing" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow rv">Стоимость за контакт</p>
+    <h2 class="rv">Чем больше объём, тем ниже цена</h2>
+    <p class="lead rv">Нет аукционов и конкуренции ставок, как в рекламе. Цена фиксирована и не зависит от сезона или ниши. При первом пополнении — +100 идентификаций бонусом на баланс.</p>
+    <div class="calc rv">
+      <div class="calc-top">
+        <div class="calc-out">
+          <b id="pPrice">35 ₽</b>
+          <span>за контакт · объём <b id="pVol" style="font-weight:600;color:var(--text)">100–299</b></span>
+        </div>
+        <div class="total">
+          <span style="font-size:14px;color:var(--muted)">Примерная стоимость пакета</span>
+          <b id="pTotal">10 500 ₽</b>
+        </div>
+      </div>
+      <input type="range" id="slider" min="0" max="7" value="0" step="1" aria-label="Объём контактов">
+      <div class="scale"><span>100</span><span>1 000</span><span>4 000</span><span>30 000</span><span>100 000</span></div>
+      <div class="tiers" id="tiers"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="section" id="faq" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow rv">Вопросы</p>
+    <h2 class="rv">Что обычно спрашивают до старта</h2>
+    <div class="faq" id="faqList"></div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="section" id="start" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta-box rv">
+      <div class="cta-grid">
+        <div>
+          <h2 style="max-width:16ch">Соберём первый сегмент под вашу нишу сегодня</h2>
+          <p class="lead" style="max-width:42ch">Оставьте номер — обсудим продукт, подберём ОКВЭД и посчитаем стоимость. Без презентаций на час.</p>
+          <div class="person">
+            <div class="avatar">ДЗ</div>
+            <div><b>Дмитрий Золкин</b><a href="tel:+79774894915">+7 977 489-49-15</a></div>
+          </div>
+        </div>
+        <form class="hero-form" id="leadForm2" style="margin-top:0;max-width:none" novalidate>
+          <div class="field" style="flex-basis:100%"><input type="text" name="name" placeholder="Как к вам обращаться" aria-label="Имя"></div>
+          <div class="field" style="flex-basis:100%"><input type="tel" name="phone" placeholder="+7 (___) ___-__-__" inputmode="tel" aria-label="Телефон" required></div>
+          <button type="submit" class="btn btn-primary" style="flex-basis:100%">Оставить заявку</button>
+          <p class="form-note">Перезвоним в рабочее время, с 10:00 до 19:00 МСК. Обычно — в течение 30 минут.</p>
+          <div class="form-ok" id="formOk2">Готово. Дмитрий свяжется с вами в ближайшее рабочее время.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Кодикс.лид</span>
+    <span><a href="tel:+79774894915">+7 977 489-49-15</a></span>
+    <span><a href="#">Политика обработки данных</a> · <a href="#">Оферта</a></span>
+  </div>
+</footer>
+
+<script>
+const RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- reveal ---------- */
+const io = new IntersectionObserver((es)=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+},{threshold:.15, rootMargin:'0px 0px -60px'});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+/* ---------- header shadow ---------- */
+const hdr = document.getElementById('hdr');
+addEventListener('scroll',()=>hdr.classList.toggle('stuck', scrollY>12),{passive:true});
+
+/* ---------- number tween ---------- */
+function tween(el, to, dur, fmt){
+  if(RM){ el.textContent = fmt(to); return; }
+  const from = parseFloat(String(el.dataset.cur||0))||0, t0=performance.now();
+  el.dataset.cur = to;
+  (function step(t){
+    const p = Math.min(1,(t-t0)/dur), e = 1-Math.pow(1-p,3);
+    el.textContent = fmt(Math.round(from+(to-from)*e));
+    if(p<1) requestAnimationFrame(step);
+  })(t0);
+}
+const nf = n => n.toLocaleString('ru-RU').replace(/,/g,' ');
+
+/* ---------- stats counters ---------- */
+const sio = new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(!e.isIntersecting) return;
+    const el=e.target, to=+el.dataset.count, pre=el.dataset.prefix||'', suf=el.dataset.suffix||'';
+    tween(el,to,1100,v=>pre+nf(v)+suf);
+    sio.unobserve(el);
+  });
+},{threshold:.6});
+document.querySelectorAll('[data-count]').forEach(el=>sio.observe(el));
+
+/* ---------- hero niche picker ---------- */
+const NICHES = [
+  {n:'Ремонт и отделка', c:14200, okved:'41.20, 43.3', avg:'от 120 000 ₽', call:'62%'},
+  {n:'Оптовая торговля', c:23800, okved:'46.x', avg:'от 80 000 ₽', call:'58%'},
+  {n:'Логистика', c:9400, okved:'49.41, 52.29', avg:'от 60 000 ₽', call:'66%'},
+  {n:'Медицина', c:6100, okved:'86.2', avg:'от 45 000 ₽', call:'54%'},
+  {n:'Юруслуги и бухгалтерия', c:11700, okved:'69.x', avg:'от 35 000 ₽', call:'61%'},
+  {n:'Автобизнес', c:8300, okved:'45.2, 45.3', avg:'от 55 000 ₽', call:'64%'}
+];
+const chips=document.getElementById('chips'), cnt=document.getElementById('cnt'), prows=document.getElementById('prows');
+let active=0;
+NICHES.forEach((x,i)=>{
+  const b=document.createElement('button');
+  b.type='button'; b.className='chip'; b.textContent=x.n; b.setAttribute('aria-pressed', i===0);
+  b.onclick=()=>{ active=i; render(); };
+  chips.appendChild(b);
+});
+function render(){
+  [...chips.children].forEach((b,i)=>b.setAttribute('aria-pressed', i===active));
+  const x=NICHES[active];
+  tween(cnt,x.c,700,nf);
+  prows.innerHTML = `
+    <div class="prow"><span class="tick"></span>Коды ОКВЭД: <em>${x.okved}</em></div>
+    <div class="prow"><span class="tick"></span>Средний чек в нише: <em>${x.avg}</em></div>
+    <div class="prow"><span class="tick"></span>Доля дозвона по сегменту: <em>${x.call}</em></div>`;
+}
+render();
+
+/* ---------- call center ---------- */
+const PHONES=['8 (926) 930-09-88','8 (917) 413-22-43','8 (915) 194-32-04','8 (926) 528-09-03','8 (922) 234-34-23','8 (903) 771-45-02'];
+const STATUS=['Интересен','Перезвонить','Квалифицирован','Отказ','Интересен','Квалифицирован'];
+const spinA=document.getElementById('spinA'), spinB=document.getElementById('spinB');
+PHONES.forEach((p,i)=>{
+  const el=document.createElement('div');
+  el.className='pill';
+  el.innerHTML=`<i></i><span>${p}</span><span class="st">· ${STATUS[i]}</span>`;
+  const a=(i/PHONES.length)*Math.PI*2 - Math.PI/3, r = i%2 ? 38 : 49;
+  el.style.left=(50+Math.cos(a)*r)+'%';
+  el.style.top=(50+Math.sin(a)*r)+'%';
+  if(!RM) el.style.animation=`rot ${i%2?46:62}s linear infinite reverse`;
+  (i%2?spinB:spinA).appendChild(el);
+});
+const cc=document.getElementById('cc'), sw=document.getElementById('ccSwitch'),
+      hub=document.getElementById('hubState'), ccl=document.getElementById('ccLabel');
+sw.onclick=()=>{
+  const on = sw.getAttribute('aria-checked')!=='true';
+  sw.setAttribute('aria-checked', on);
+  cc.classList.toggle('live', on);
+  hub.textContent = on?'Включён':'Выключен';
+  ccl.textContent = on?'Контакты уходят на прозвон':'Включить колл-центр';
+  const pills=[...document.querySelectorAll('.pill')];
+  pills.forEach((p,i)=> setTimeout(()=>p.classList.toggle('on',on), RM?0:i*130));
+};
+
+/* ---------- calls ---------- */
+const CALLS=[
+  {niche:'Ремонт и отделка', title:'Подрядчик по фасадам', dur:'2:14', res:'Квалифицирован', ok:true, file:'call-1.mp3'},
+  {niche:'Ремонт и отделка', title:'Управляющая компания', dur:'1:47', res:'Перезвонить', ok:true, file:'call-2.mp3'},
+  {niche:'Логистика', title:'Склад ответственного хранения', dur:'3:02', res:'Квалифицирован', ok:true, file:'call-3.mp3'},
+  {niche:'Логистика', title:'Межгород, 12 машин', dur:'1:29', res:'Отказ — есть подрядчик', ok:false, file:'call-4.mp3'},
+  {niche:'Медицина', title:'Стоматология, 3 кабинета', dur:'2:38', res:'Квалифицирован', ok:true, file:'call-5.mp3'},
+  {niche:'Опт и B2B', title:'Поставщик упаковки', dur:'2:05', res:'Квалифицирован', ok:true, file:'call-6.mp3'},
+  {niche:'Опт и B2B', title:'Дистрибьютор инструмента', dur:'1:53', res:'Перезвонить в мае', ok:true, file:'call-7.mp3'}
+];
+const tabsEl=document.getElementById('callTabs'), listEl=document.getElementById('callList');
+const niches=['Все', ...new Set(CALLS.map(c=>c.niche))];
+let cur='Все', playing=null;
+niches.forEach((n,i)=>{
+  const b=document.createElement('button');
+  b.className='tab'; b.type='button'; b.role='tab'; b.textContent=n;
+  b.setAttribute('aria-selected', i===0);
+  b.onclick=()=>{ cur=n; [...tabsEl.children].forEach(x=>x.setAttribute('aria-selected', x===b)); drawCalls(); };
+  tabsEl.appendChild(b);
+});
+function bars(seed){
+  let s=seed*9301, out='';
+  for(let i=0;i<44;i++){ s=(s*9301+49297)%233280; const h=18+Math.round((s/233280)*82); out+=`<i style="height:${h}%"></i>`; }
+  return out;
+}
+function drawCalls(){
+  const set = cur==='Все'?CALLS:CALLS.filter(c=>c.niche===cur);
+  listEl.innerHTML = set.map((c,i)=>`
+    <article class="call" data-file="${c.file}">
+      <div class="call-top">
+        <button class="play" type="button" aria-label="Слушать: ${c.title}">
+          <svg width="15" height="15" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <div class="call-meta"><b>${c.title}</b><span>${c.niche} · ${c.dur}</span></div>
+      </div>
+      <div class="wave">${bars(i+set.length)}</div>
+      <div class="call-foot">
+        <span class="badge ${c.ok?'':'warn'}">${c.res}</span>
+        <span>Оператор Кодикс.лид</span>
+      </div>
+      <audio preload="none" src="${c.file}"></audio>
+    </article>`).join('');
+  bindPlayers();
+}
+function bindPlayers(){
+  listEl.querySelectorAll('.call').forEach(card=>{
+    const btn=card.querySelector('.play'), audio=card.querySelector('audio'),
+          wave=card.querySelector('.wave'), bs=[...wave.querySelectorAll('i')];
+    const icoPlay='<svg width="15" height="15" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+    const icoPause='<svg width="15" height="15" viewBox="0 0 24 24"><path d="M7 4h4v16H7zM13 4h4v16h-4z"/></svg>';
+    btn.onclick=()=>{
+      if(playing && playing!==audio){ playing.pause(); }
+      if(audio.paused){
+        audio.play().catch(()=>{
+          card.querySelector('.call-foot span:last-child').textContent='Файл записи не загружен';
+        });
+        playing=audio; btn.innerHTML=icoPause;
+      } else { audio.pause(); btn.innerHTML=icoPlay; }
+    };
+    audio.onpause=()=>btn.innerHTML=icoPlay;
+    audio.onended=()=>{ btn.innerHTML=icoPlay; bs.forEach(b=>b.classList.remove('pass')); };
+    audio.ontimeupdate=()=>{
+      const p=audio.currentTime/(audio.duration||1);
+      bs.forEach((b,i)=>b.classList.toggle('pass', i/bs.length<=p));
+    };
+    wave.onclick=e=>{
+      if(!audio.duration) return;
+      const r=wave.getBoundingClientRect();
+      audio.currentTime=((e.clientX-r.left)/r.width)*audio.duration;
+    };
+  });
+}
+drawCalls();
+
+/* ---------- pricing ---------- */
+const TIERS=[
+  {lo:100,hi:299,label:'100–299',p:35},{lo:300,hi:999,label:'300–999',p:30},
+  {lo:1000,hi:1999,label:'1 000–1 999',p:25},{lo:2000,hi:3999,label:'2 000–3 999',p:21},
+  {lo:4000,hi:9999,label:'4 000–9 999',p:18},{lo:10000,hi:29999,label:'10 000–29 999',p:15},
+  {lo:30000,hi:49999,label:'30 000–49 999',p:14},{lo:50000,hi:99999,label:'50 000–99 999',p:10}
+];
+const tiersEl=document.getElementById('tiers'), slider=document.getElementById('slider'),
+      pPrice=document.getElementById('pPrice'), pVol=document.getElementById('pVol'), pTotal=document.getElementById('pTotal');
+tiersEl.innerHTML=TIERS.map((t,i)=>{const disc=Math.round((1-t.p/35)*100);
+  return `<button type="button" class="tier" data-i="${i}">
+  <small>${t.label}</small><b>${i===7?'от ':''}${t.p} ₽</b>${i>0?`<small style="margin:6px 0 0;color:var(--signal)">−${disc}%</small>`:''}</button>`;}).join('');
+tiersEl.onclick=e=>{ const b=e.target.closest('.tier'); if(!b) return; slider.value=b.dataset.i; paint(); };
+function paint(){
+  const i=+slider.value, t=TIERS[i];
+  slider.style.setProperty('--pct',(i/7*100)+'%');
+  pPrice.textContent=(i===7?'от ':'')+t.p+' ₽';
+  pVol.textContent=t.label;
+  tween(pTotal,t.lo*t.p,450,v=>nf(v)+' ₽');
+  [...tiersEl.children].forEach((b,j)=>b.classList.toggle('active',j===i));
+}
+slider.oninput=paint; paint();
+
+/* ---------- faq ---------- */
+const FAQ=[
+  ['Откуда у вас данные компаний?','Сегменты собираются из открытых источников: ЕГРЮЛ и ЕГРИП, реестры лицензий, отраслевые каталоги и справочники, где компании сами публикуют контакты для деловых обращений. Мы работаем с контактами организаций, а не физлиц: это открытые деловые контакты, которые сами компании публикуют для B2B-обращений. По каждому контакту можем показать источник, а несоответствующие сегменту позиции заменяем без доплаты.'],
+  ['Чем это отличается от покупки готовой базы?','База — это файл, который устаревает в день покупки. У нас сегмент собирается под ваш запрос, обновляется ежедневно, а с колл-центром вы получаете не строчки, а разговоры: со статусом, комментарием и записью.'],
+  ['Есть ли абонентская плата?','Нет. Платите только за контакты, от 35 ₽ до 10 ₽ в зависимости от объёма. Обработка колл-центром — отдельно, от 70 ₽ за контакт, подключается по желанию.'],
+  ['Что если контакт не подошёл?','Присылаете его номер с пометкой — разбираем. Если контакт не соответствует согласованному сегменту или оператор отработал некорректно, заменяем без доплаты. Запись разговора всегда доступна.'],
+  ['Как быстро начнём?','Первый сегмент собираем в течение суток после согласования ниши. Дальше выгрузки приходят ежедневно порциями, объём вы регулируете сами.'],
+  ['Это законно? Не персональные ли данные?','Да. Мы передаём номер телефона организации без привязки к ФИО — это не является персональными данными по 152-ФЗ. Работа ведётся с аудиторией, давшей согласие оператору связи на обработку данных. Кодикс.лид зарегистрирован как оператор персональных данных в реестре Роскомнадзора, серверы находятся в РФ.'],
+  ['Есть ли подписка или абонентская плата?','Нет. Вы платите только за контакты — от 35 до 10 ₽ за идентификацию в зависимости от объёма. Скрытых комиссий нет. При первом пополнении — бонус +100 идентификаций.'],
+  ['Можем обрабатывать контакты сами, без колл-центра?','Конечно. Контакты можно выгружать в CRM или таблицу и обрабатывать своим отделом продаж. Колл-центр — дополнительный модуль за 70 ₽ за контакт: до 4 попыток дозвона, статус, комментарий и запись разговора.'],
+  ['С какими CRM есть интеграции?','Прямые интеграции с Битрикс24 и amoCRM, а также webhook, Make и Albato. Все интеграции бесплатны, контакты попадают в CRM автоматически сразу после поступления.'],
+  ['В каких нишах сервис работает?','В любой нише со средним чеком от 10 000 ₽: ремонт и строительство, недвижимость, автобизнес, медицина, юридические услуги, финансы, B2B-услуги, образование, туризм. Если у вас есть конкуренты с сайтами или телефонами — сможем перехватывать их аудиторию.'],
+  ['Как быстро поступают контакты после старта?','На следующий день после настройки источников. Контакты приходят ежедневно порциями — система отдаёт тех, кто проявил интерес вчера, пока спрос горячий.'],
+  ['Мы можем сначала попробовать на маленьком объёме?','Да, минимальный пакет — 100 контактов. Обычно этого хватает, чтобы увидеть качество дозвона в своей нише и решить, масштабировать ли.']
+];
+const faqList=document.getElementById('faqList');
+faqList.innerHTML=FAQ.map(([q,a])=>`
+  <div class="q"><button type="button" aria-expanded="false"><span>${q}</span><span class="plus"></span></button>
+  <div class="a"><p>${a}</p></div></div>`).join('');
+faqList.querySelectorAll('.q button').forEach(b=>{
+  b.onclick=()=>{
+    const q=b.parentElement, a=q.querySelector('.a'), open=q.hasAttribute('open');
+    faqList.querySelectorAll('.q[open]').forEach(o=>{
+      o.removeAttribute('open'); o.querySelector('.a').style.maxHeight=0;
+      o.querySelector('button').setAttribute('aria-expanded','false');
+    });
+    if(!open){ q.setAttribute('open',''); a.style.maxHeight=a.scrollHeight+'px'; b.setAttribute('aria-expanded','true'); }
+  };
+});
+
+/* ---------- phone mask + forms ---------- */
+function mask(v){
+  let d=v.replace(/\D/g,'');
+  if(d.startsWith('8')) d='7'+d.slice(1);
+  if(!d.startsWith('7')) d='7'+d;
+  d=d.slice(0,11);
+  let o='+7';
+  if(d.length>1) o+=' ('+d.slice(1,4);
+  if(d.length>=5) o+=') '+d.slice(4,7);
+  if(d.length>=8) o+='-'+d.slice(7,9);
+  if(d.length>=10) o+='-'+d.slice(9,11);
+  return o;
+}
+document.querySelectorAll('input[type=tel]').forEach(inp=>{
+  inp.addEventListener('input',()=>{ inp.value=mask(inp.value); inp.style.borderColor=''; });
+});
+function handle(formId, okId, phoneOutId){
+  const f=document.getElementById(formId); if(!f) return;
+  f.addEventListener('submit',e=>{
+    e.preventDefault();
+    const inp=f.querySelector('input[type=tel]');
+    if(inp.value.replace(/\D/g,'').length<11){
+      inp.style.borderColor='#E05A5A'; inp.focus(); return;
+    }
+    // Здесь отправка на ваш backend / CRM:
+    // fetch('/api/lead', {method:'POST', body:new FormData(f)});
+    if(phoneOutId) document.getElementById(phoneOutId).textContent=inp.value;
+    f.style.display='none';
+    document.getElementById(okId).classList.add('show');
+  });
+}
+handle('leadForm','formOk','okPhone');
+handle('leadForm2','formOk2');
+</script>
+</body>
+</html>
